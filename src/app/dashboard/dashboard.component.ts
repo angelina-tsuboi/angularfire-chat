@@ -55,6 +55,9 @@ export class DashboardComponent implements OnInit {
     ).subscribe(data => {
       console.log('data', data)
         this.users = data.filter((item)=>{
+          if(this.api.currentUser.conversations == null){
+            this.api.currentUser.conversations = [];
+          }
           let find = this.api.currentUser.conversations.find(el => el.uid == item.uid);
           if(!find){
             return item;
